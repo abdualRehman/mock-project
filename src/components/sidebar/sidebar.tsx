@@ -2,28 +2,25 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
   UsersIcon,
   XMarkIcon,
+
 } from '@heroicons/react/24/outline'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
+import { Briefcase, FileBarChart, FolderClosed, LayoutGrid, Lightbulb, Settings, Users } from 'lucide-react';
+
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: HomeIcon, current: true },
-  { name: 'Subscription', href: '/subscription', icon: UsersIcon, current: false },
-  { name: 'Team Members', href: '/team-members', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Businesses', href: '#', icon: Briefcase, current: false },
+  { name: 'Clients', href: '#', icon: Users, current: false },
+  { name: 'Team Management', href: '/team-members', icon: UsersIcon, current: false },
+  { name: 'Subscription', href: '/subscription', icon: FileBarChart, current: false },
+  { name: 'Payments', href: '#', icon: FolderClosed, current: false },
 ]
 const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+  { id: 1, name: 'Tickets', href: '/tickets', icon: Settings, current: false },
+  { id: 2, name: 'Help & Support', href: '#', icon: Lightbulb, current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -77,184 +74,224 @@ const sidebar = () => {
                     </div>
                   </Transition.Child>
 
-                  <div className='hidden' >
 
-                    {/* Sidebar component, swap this element with another sidebar if you like */}
-                    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-900 px-6 pb-2">
-                      <div className="flex h-16 shrink-0 items-center">
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                          alt="Your Company"
-                        />
-                      </div>
-                      <nav className="flex flex-1 flex-col">
-                        <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                          <li>
-                            <ul role="list" className="-mx-2 space-y-1">
-                              {navigation.map((item) => (
-                                <li key={item.name}>
-                                  <Link
-                                    to={item.href}
-                                    className={classNames(
-                                      item.current
-                                        ? 'bg-white text-slate-900'
-                                        : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
-                                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                    )}
-                                  >
-                                    <item.icon
-                                      className={classNames(
-                                        item.current ? 'text-slate-900' : 'text-indigo-200 group-hover:text-slate-900',
-                                        'h-6 w-6 shrink-0'
-                                      )}
-                                      aria-hidden="true"
-                                    />
-                                    {item.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                          <li>
-                            <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
-                            <ul role="list" className="-mx-2 mt-2 space-y-1">
-                              {teams.map((team) => (
-                                <li key={team.name}>
-                                  <Link
-                                    to={team.href}
-                                    className={classNames(
-                                      team.current
-                                        ? 'bg-white text-slate-900'
-                                        : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
-                                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                    )}
-                                  >
-                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                                      {team.initial}
-                                    </span>
-                                    <span className="truncate">{team.name}</span>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        </ul>
-                      </nav>
+
+                  {/* Sidebar component, swap this element with another sidebar if you like */}
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-900 px-6 pb-2">
+                    <div className="flex h-16 shrink-0 items-center">
+                      <img
+                        className="h-8 w-auto m-auto"
+                        src={logo}
+                        alt="Your Company"
+                      />
                     </div>
-
-
+                    <nav className="flex flex-1 flex-col">
+                      <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                        <li>
+                          <ul role="list" className="-mx-2 space-y-1">
+                            <li className='mb-5' >
+                              <Link
+                                to={'/'}
+                                className={classNames('bg-white text-slate-900', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold')}
+                              >
+                                <LayoutGrid
+                                  className={classNames(
+                                    'text-slate-900',
+                                    'h-6 w-6 shrink-0'
+                                  )}
+                                  aria-hidden="true"
+                                />
+                                Dashboard
+                              </Link>
+                            </li>
+                            <div className="text-md font-semibold leading-6 text-slate-500 mb-2">Relations</div>
+                            {navigation.map((item) => (
+                              <li key={item.name}>
+                                <Link
+                                  to={item.href}
+                                  className={classNames(
+                                    item.current
+                                      ? 'bg-white text-slate-900'
+                                      : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
+                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                  )}
+                                >
+                                  <item.icon
+                                    className={classNames(
+                                      item.current ? 'text-slate-900' : 'text-indigo-200 group-hover:text-slate-900',
+                                      'h-6 w-6 shrink-0'
+                                    )}
+                                    aria-hidden="true"
+                                  />
+                                  {item.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </li>
+                        <li>
+                          <div className="text-md font-semibold leading-6 text-slate-500 mb-2">Support</div>
+                          <ul role="list" className="-mx-2 mt-2 space-y-1">
+                            {teams.map((team) => (
+                              <li key={team.name}>
+                                <Link
+                                  to={team.href}
+                                  className={classNames(
+                                    team.current
+                                      ? 'bg-white text-slate-900'
+                                      : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
+                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                  )}
+                                >
+                                  <team.icon
+                                    className={classNames(
+                                      team.current ? 'text-slate-900' : 'text-indigo-200 group-hover:text-slate-900',
+                                      'h-6 w-6 shrink-0'
+                                    )}
+                                    aria-hidden="true"
+                                  />
+                                  <span className="truncate">{team.name}</span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
+
+
+
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </Dialog>
         </Transition.Root>
 
-        <div className='hidden' >
-
-
-          {/* Static sidebar for desktop */}
-          <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-            {/* Sidebar component, swap this element with another sidebar if you like */}
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-900 px-6 custom-scrollbar-hide">
-              <div className="flex h-16 shrink-0 items-center">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                  alt="Your Company"
-                />
-              </div>
-              <nav className="flex flex-1 flex-col">
-                <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                  <li>
-                    <ul role="list" className="-mx-2 space-y-1">
-                      {navigation.map((item) => (
-                        <li key={item.name}>
-                          <Link
-                            to={item.href}
-                            className={classNames(
-                              item.current
-                                ? 'bg-white text-slate-900'
-                                : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
-                              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                            )}
-                          >
-                            <item.icon
-                              className={classNames(
-                                item.current ? 'text-slate-900' : 'text-indigo-200 group-hover:text-slate-900',
-                                'h-6 w-6 shrink-0'
-                              )}
-                              aria-hidden="true"
-                            />
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li>
-                    <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
-                    <ul role="list" className="-mx-2 mt-2 space-y-1">
-                      {teams.map((team) => (
-                        <li key={team.name}>
-                          <Link
-                            to={team.href}
-                            className={classNames(
-                              team.current
-                                ? 'bg-white text-slate-900'
-                                : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
-                              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                            )}
-                          >
-                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                              {team.initial}
-                            </span>
-                            <span className="truncate">{team.name}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li className="-mx-6 mt-auto">
-                    <Link
-                      to="#"
-                      className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-white hover:text-slate-900"
-                    >
-                      <img
-                        className="h-8 w-8 rounded-full bg-slate-300"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                      <span className="sr-only">Your profile</span>
-                      <span aria-hidden="true">Tom Cook</span>
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
 
 
 
-
-          <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-slate-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-            <button type="button" className="-m-2.5 p-2.5 text-indigo-200 lg:hidden" onClick={() => setSidebarOpen(true)}>
-              <span className="sr-only">Open sidebar</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </button>
-            <div className="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
-            <a href="#">
-              <span className="sr-only">Your profile</span>
+        {/* Static sidebar for desktop */}
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-900 px-6 custom-scrollbar-hide">
+            <div className="flex h-16 shrink-0 items-center">
               <img
-                className="h-8 w-8 rounded-full bg-slate-300"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
+                className="h-8 w-auto m-auto"
+                src={logo}
+                alt="Your Company"
               />
-            </a>
+            </div>
+            <nav className="flex flex-1 flex-col">
+              <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                <li className="-mx-2 space-y-1" >
+                  <Link
+                    to={'/'}
+                    className={classNames('bg-white text-slate-900', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold')}
+                  >
+                    <LayoutGrid
+                      className={classNames(
+                        'text-slate-900',
+                        'h-6 w-6 shrink-0'
+                      )}
+                      aria-hidden="true"
+                    />
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <div className="text-md font-semibold leading-6 text-slate-500 mb-2">Relations</div>
+                  <ul role="list" className="-mx-2 space-y-1">
+                    {navigation.map((item) => (
+                      <li key={item.name}>
+                        <Link
+                          to={item.href}
+                          className={classNames(
+                            item.current
+                              ? 'bg-white text-slate-900'
+                              : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
+                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          )}
+                        >
+                          <item.icon
+                            className={classNames(
+                              item.current ? 'text-slate-900' : 'text-indigo-200 group-hover:text-slate-900',
+                              'h-6 w-6 shrink-0'
+                            )}
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li>
+                  <div className="text-md font-semibold leading-6 text-slate-500 mb-2">Support</div>
+                  <ul role="list" className="-mx-2 mt-2 space-y-1">
+                    {teams.map((team) => (
+                      <li key={team.name}>
+                        <Link
+                          to={team.href}
+                          className={classNames(
+                            team.current
+                              ? 'bg-white text-slate-900'
+                              : 'text-indigo-200 hover:text-slate-900 hover:bg-white',
+                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                          )}
+                        >
+                          <team.icon
+                            className={classNames(
+                              team.current ? 'text-slate-900' : 'text-indigo-200 group-hover:text-slate-900',
+                              'h-6 w-6 shrink-0'
+                            )}
+                            aria-hidden="true"
+                          />
+                          <span className="truncate">{team.name}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className="-mx-6 mt-auto">
+                  <div className="mx-5 text-md font-semibold leading-6 text-slate-500 mb-2">Profile</div>
+                  <Link
+                    to="#"
+                    className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-slate-800"
+                  >
+                    <img
+                      className="h-8 w-8 rounded-full bg-slate-300"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <div aria-hidden="true">
+                      <h3>John Doe</h3>
+                      <h6 className='text-slate-300' >johndoe@gmail.com</h6>
+                    </div>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
+        </div>
 
 
+
+
+        <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-slate-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+          <button type="button" className="-m-2.5 p-2.5 text-indigo-200 lg:hidden" onClick={() => setSidebarOpen(true)}>
+            <span className="sr-only">Open sidebar</span>
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+          </button>
+          <div className="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
+          <a href="#">
+            <span className="sr-only">Your profile</span>
+            <img
+              className="h-8 w-8 rounded-full bg-slate-300"
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt=""
+            />
+          </a>
         </div>
 
         <main className="py-10 lg:pl-72">
