@@ -1,0 +1,23 @@
+.card {
+  @apply relative h-full overflow-hidden rounded-md bg-white bg-opacity-5 p-4 shadow;
+}
+
+.content {
+  @apply flex h-full flex-col;
+}
+
+.title {
+  @apply bg-gradient-to-tl from-fuchsia-200 via-cyan-500 to-violet-400 bg-clip-text text-2xl font-bold text-transparent;
+}
+
+.description {
+  @apply mt-2 flex-1 text-base text-gray-300;
+}
+
+.iconContainer {
+  @apply absolute right-3 bottom-3 flex items-center justify-center rounded-md opacity-100;
+}
+
+.icon {
+  @apply h-12 w-12 text-cyan-400;
+}

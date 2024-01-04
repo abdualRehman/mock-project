@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Subscription from "./pages/Subscription";
 import Navbar from "./components/navbar/navbar";
-import Sidebar from "./components/sidebar/sidebar";
+import DashboardLayout from '@/layouts/dashboard'
 
 import TeamMembers from "./pages/teamMembers";
 import Tickets from "./pages/Tickets";
@@ -16,11 +16,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Sidebar />}
+            element={<DashboardLayout />}
           >
+            <Route path="navbar" element={<Navbar />} />
             <Route path="subscription" element={<Subscription />} />
             <Route path="tickets" element={<Tickets />} />
-            <Route path="navbar" element={<Navbar />} />
             <Route path="team-members" element={<TeamMembers />} />
 
           </Route>
