@@ -1,3 +1,4 @@
+import React from "react";
 import { TTypoProps } from "./type";
 
 const typoLead = ({ children, className, ...props }: TTypoProps) => {

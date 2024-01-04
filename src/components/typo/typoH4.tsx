@@ -1,3 +1,4 @@
+import React from "react";
 import { TTypoProps } from "./type";
 
 const typoH4 = ({ children, className, ...props }: TTypoProps) => {

@@ -1,3 +1,4 @@
+import React from "react";
 import { TTypoProps } from "./type";
 
 const typoLarge = ({ children, className, ...props }: TTypoProps) => {

@@ -1,3 +1,4 @@
+import React from "react";
 import { TTypoProps } from "./type";
 
 const typoMuted = ({ children, className, ...props }: TTypoProps) => {

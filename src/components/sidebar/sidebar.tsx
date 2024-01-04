@@ -9,6 +9,7 @@ import {
 import { Link, Outlet } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import { Briefcase, FileBarChart, FolderClosed, LayoutGrid, Lightbulb, Settings, Users } from 'lucide-react';
+import React from 'react';
 
 
 const navigation = [

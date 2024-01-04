@@ -1,3 +1,4 @@
+import React from "react";
 import { TTypoProps } from "./type";
 
 const typoP = ({ children, className, ...props }: TTypoProps) => {

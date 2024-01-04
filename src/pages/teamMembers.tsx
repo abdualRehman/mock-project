@@ -1,3 +1,4 @@
+import React from "react";
 import Slideover from "@/components/slideover";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Search } from "lucide-react";
